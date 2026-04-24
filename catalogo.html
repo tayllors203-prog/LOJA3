@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Catalogo Completo | Moldes Rosanets</title>
+    <meta
+      name="description"
+      content="Catalogo completo de produtos da Moldes Rosanets, com links diretos para compra."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --surface: #ffffff;
+        --surface-soft: #f7f9ff;
+        --text: #141824;
+        --text-soft: #5d667a;
+        --primary: #3d5cff;
+        --primary-dark: #2f46ca;
+        --border: #e3e8f3;
+        --shadow: 0 20px 40px rgba(13, 24, 52, 0.08);
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: radial-gradient(circle at top right, #dfe8ff 0%, #f4f7fd 35%, #eef2fb 100%);
+        color: var(--text);
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(1120px, 100% - clamp(20px, 5vw, 48px));
+        margin: 0 auto;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: blur(10px);
+        background: rgba(243, 246, 252, 0.85);
+        border-bottom: 1px solid rgba(227, 232, 243, 0.9);
+        padding-left: env(safe-area-inset-left, 0);
+        padding-right: env(safe-area-inset-right, 0);
+      }
+
+      .header-inner {
+        min-height: 74px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .header-inner .brand {
+        min-width: 0;
+      }
+
+      .back-label-long {
+        display: inline;
+      }
+
+      .back-label-short {
+        display: none;
+      }
+
+      .brand {
+        font-size: 1.2rem;
+        font-weight: 800;
+      }
+
+      .brand span {
+        color: var(--primary);
+      }
+
+      .btn {
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.25s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+        padding: 12px 20px;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn-ghost {
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--text);
+        padding: 11px 18px;
+      }
+
+      .hero {
+        padding: 46px 0 22px;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 4.2vw, 3rem);
+        margin-bottom: 8px;
+      }
+
+      .hero p {
+        color: var(--text-soft);
+        max-width: 70ch;
+      }
+
+      .products-section {
+        padding: 18px 0 44px;
+      }
+
+      .catalog-search {
+        margin-bottom: 22px;
+        width: 100%;
+        max-width: 440px;
+      }
+
+      .catalog-search-label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+
+      .catalog-search-input {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        font: inherit;
+        color: var(--text);
+        box-shadow: 0 2px 8px rgba(20, 24, 36, 0.04);
+      }
+
+      .catalog-search-input:focus {
+        outline: 2px solid rgba(61, 92, 255, 0.25);
+        border-color: #b8c4ff;
+      }
+
+      .catalog-search-input::placeholder {
+        color: #8b95ab;
+      }
+
+      .catalog-search-meta {
+        margin-top: 8px;
+        font-size: 0.86rem;
+        color: var(--text-soft);
+      }
+
+      .catalog-search-empty {
+        display: none;
+        text-align: center;
+        padding: 28px 16px;
+        margin-bottom: 18px;
+        border-radius: 14px;
+        border: 1px dashed var(--border);
+        background: rgba(255, 255, 255, 0.65);
+        color: var(--text-soft);
+        font-size: 0.95rem;
+      }
+
+      .catalog-search-empty.is-visible {
+        display: block;
+      }
+
+      .product-card.is-hidden-search {
+        display: none;
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .product-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 14px 28px rgba(20, 24, 36, 0.06);
+      }
+
+      .product-image {
+        aspect-ratio: 4 / 3;
+        background: #fff;
+        overflow: hidden;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .product-body {
+        padding: 16px;
+      }
+
+      .product-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .product-title {
+        font-weight: 700;
+      }
+
+      .product-price {
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .product-body p {
+        color: var(--text-soft);
+        margin-bottom: 14px;
+        font-size: 0.93rem;
+      }
+
+      .product-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .product-actions .btn {
+        flex: 1;
+      }
+
+      .footer {
+        padding: 22px 0 30px;
+        border-top: 1px solid rgba(196, 208, 233, 0.9);
+        color: #647089;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 1000px) {
+        .products {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .product-detalhes-source {
+        display: none;
+      }
+
+      .detalhes-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .detalhes-modal.is-open {
+        display: flex;
+      }
+
+      .detalhes-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(20, 24, 36, 0.45);
+      }
+
+      .detalhes-modal-box {
+        position: relative;
+        width: min(360px, 100%);
+        max-height: min(420px, 85vh);
+        background: var(--surface);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .detalhes-modal-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .detalhes-modal-head h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--text);
+      }
+
+      .detalhes-modal-close {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border: none;
+        border-radius: 10px;
+        background: var(--surface-soft);
+        color: var(--text);
+        font-size: 1.35rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+      }
+
+      .detalhes-modal-close:hover {
+        background: #e8edfb;
+      }
+
+      .detalhes-modal-body {
+        padding: 14px 16px 16px;
+        overflow-y: auto;
+        color: var(--text-soft);
+        font-size: 0.93rem;
+        line-height: 1.55;
+      }
+
+      .detalhes-modal-body p + p {
+        margin-top: 10px;
+      }
+
+      @media (max-width: 700px) {
+        .header-inner {
+          flex-wrap: nowrap;
+          padding: 10px 0;
+        }
+
+        .back-label-long {
+          display: none;
+        }
+
+        .back-label-short {
+          display: inline;
+        }
+
+        .header-inner .btn-ghost {
+          padding: 10px 16px;
+          font-size: 0.9rem;
+        }
+
+        .products {
+          grid-template-columns: 1fr;
+        }
+
+        .product-actions {
+          flex-direction: column;
+        }
+
+        .product-actions .btn {
+          width: 100%;
+        }
+
+        .footer {
+          text-align: center;
+          padding-bottom: calc(22px + env(safe-area-inset-bottom, 0));
+        }
+
+        .hero {
+          padding-top: 32px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .detalhes-modal {
+          align-items: flex-end;
+          padding: 0;
+          padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+
+        .detalhes-modal-box {
+          width: 100%;
+          max-width: 100%;
+          border-radius: 18px 18px 0 0;
+          max-height: min(88vh, calc(100dvh - 24px));
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-inner {
+          gap: 8px;
+        }
+
+        .header-inner .btn-ghost {
+          white-space: nowrap;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/assist-molde.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand">Moldes<span>Rosanets</span></a>
+        <a href="index.html" class="btn btn-ghost" title="Voltar para a página inicial">
+          <span class="back-label-long">Voltar para a Home</span>
+          <span class="back-label-short">Início</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Catalogo Completo</h1>
+          <p>
+            Aqui voce pode mostrar todos os seus produtos. Para adicionar mais itens, basta duplicar um
+            card e trocar imagem, nome, preco e link de compra.
+          </p>
+        </div>
+      </section>
+
+      <section class="products-section">
+        <div class="container">
+          <div class="catalog-search">
+            <label class="catalog-search-label" for="catalog-search-input">Buscar produtos</label>
+            <input
+              type="search"
+              id="catalog-search-input"
+              class="catalog-search-input"
+              placeholder="Digite parte do nome ou palavra parecida…"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <p class="catalog-search-meta" id="catalog-search-meta" aria-live="polite"></p>
+          </div>
+          <p class="catalog-search-empty" id="catalog-search-empty">
+            Nenhum produto encontrado. Tente outra palavra ou verifique a ortografia.
+          </p>
+          <div class="products" id="catalog-products">
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  <strong>1. Versatilidade de tamanhos:</strong> O Corset está disponível nos tamanhos 36 ao
+                  46, o que permite atender a uma ampla gama de clientes com diferentes medidas corporais. Isso
+                  garante que todas as mulheres possam encontrar um corset que se ajuste perfeitamente ao seu
+                  corpo, proporcionando conforto e estilo.
+                </p>
+                <p>
+                  <strong>2. Personalização de tecidos:</strong> O Corset foi testado em tecido plano, mas
+                  também pode ser adaptado para tecidos com elasticidade. Isso significa que as clientes têm
+                  a liberdade de escolher o tipo de tecido que desejam usar em seu corset, permitindo que elas
+                  personalizem o produto de acordo com suas preferências e necessidades. Além disso, a
+                  possibilidade de adaptar as medidas também oferece a oportunidade de criar um corset sob
+                  medida para cada cliente, garantindo um ajuste perfeito e um resultado final único.
+                </p>
+              </div>
+              <div class="product-image">
+                <img
+                  src="https://github.com/tayllors203-prog/imageproduto1/blob/main/WhatsApp%20Image%202026-04-23%20at%2011.23.51.jpeg?raw=true"
+                  alt="Corset"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Corset</h3>
+                  <span class="product-price">R$ 25,00</span>
+                </div>
+                <p>Disponivel pra imprimir em A4 e poster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/W74206596I"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  <strong
+                    >Modelagem digital desenvolvida para costureiras que deseja facilitar o trabalho na hora
+                    da confecção simples e prática disponível no tamanho real pra imprimir em plotter se desejar
+                    imprimir em casa basta mudar a configuração da impressora pra formatoA4 disponível nos
+                    tamanhos 36 ao 54 sugestão de tecido plano ou malha Modelagem testada e aprovada...</strong>
+                </p>
+              </div>
+              <div class="product-image">
+                <img
+                  src="https://github.com/tayllors203-prog/imageproduto1/blob/main/WhatsApp%20Image%202026-04-23%20at%2011.41.26.jpeg?raw=true"
+                  alt="Calca Pantalona"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Calca Pantalona</h3>
+                  <span class="product-price">R$ 15,00</span>
+                </div>
+                <p>Disponivel nos formatos de impressao A4 e poster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/Q74215274P"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  Modelagem desenvolvida por uma moldista através de uma foto inspiração nos tamanhos PMGGG
+                  agrupados com sugestões de malha dentro do molde disponível em dois formatos de impressão A4 e
+                  plotter para vc escolher qual melhor opção.
+                </p>
+              </div>
+              <div class="product-image">
+                <img
+                  src="https://raw.githubusercontent.com/tayllors203-prog/image-produto3/575728b3e0b2ad7ffbe68e88d2960719434ffd58/WhatsApp%20Image%202026-04-23%20at%2015.41.32.jpeg"
+                  alt="Blusa Costa Nua"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Blusa Costa Nua</h3>
+                  <span class="product-price">R$ 20,00</span>
+                </div>
+                <p>Disponível em dois formato de impressão A4 e pôster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/S94411643D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  Modelagem digital de bata frufru com alcinha disponível nos tamanhos P ao G5 nos formatos A4
+                  e poster com ficha técnica para facilitar na hora da confecção com informações de acessórios e
+                  sugestões de tecido..
+                </p>
+              </div>
+              <div class="product-image">
+                <img
+                  src="https://github.com/tayllors203-prog/image-produto3/blob/main/WhatsApp%20Image%202026-04-23%20at%2015.45.36.jpeg?raw=true"
+                  alt="Bata Frufru com Alça"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Bata Frufru com Alça</h3>
+                  <span class="product-price">R$ 20,00</span>
+                </div>
+                <p>Disponível em dois formato de impressão A4 e pôster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/B100780964K"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  Modelagem digital simples e pratica pra vc que ama costurar na medida certa, disponível dos
+                  tamanhos 36 ao 54 disponível no formato de impressão plotter (tamanho real) e também em A4
+                  sugestão de tecido plano, viscose, linho, similares.
+                </p>
+              </div>
+              <div class="product-image">
+                <img
+                  src="https://github.com/tayllors203-prog/image-produto3/blob/main/WhatsApp%20Image%202026-04-23%20at%2015.48.32.jpeg?raw=true"
+                  alt="Calça Envelope"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Calça Envelope</h3>
+                  <span class="product-price">R$ 20,00</span>
+                </div>
+                <p>Disponível em dois formato de impressão A4 e pôster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/W89391164K"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  Essa modelagem foi desenvolvida a pedido de uma cliente que se apaixonou pelo modelo que viu
+                  nas redes sociais, me enviou a foto do modelo inspiração para ser desenvolvida a modelagem
+                  digital disponível em dois formatos de impressão podendo imprimir em casa com impressora comum
+                  em A4 ou em gráfica no tamanho real, disponível nos tamanhos PMGGG, sugestões de tecido de malha
+                  suplex acetinado de boa qualidade, sugiro que faça uma peça piloto antes de cortar uma grande
+                  quantidade de tamanhos antes para ter certeza que está de acordo com o modelo inspiração da
+                  foto, com essa Modelagem vc pode reinventar vários looks com zíper ou sem zíper coloquei duas
+                  opções de blusa pra vc optar em colocar zíper ou não.
+                </p>
+              </div>
+              <div class="product-image">
+                <img
+                  src="https://github.com/tayllors203-prog/image-produto3/blob/main/WhatsApp%20Image%202026-04-23%20at%2015.52.17.jpeg?raw=true"
+                  alt="Conjunto Suplex"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Conjunto Suplex</h3>
+                  <span class="product-price">R$ 20,00</span>
+                </div>
+                <p>Disponível em dois formato de impressão A4 e pôster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/W77699811I"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  Moldes desenvolvimento através de uma foto inspiração extraída da internet enviada por uma
+                  cliente em busca de um tamanho para diversos públicos do P ao G5 disponível nos arquivos A4 e
+                  pôster, desenvolvido pela modelista Jéssica em parceria com moldesrosanets moldes, testado e
+                  aprovado..
+                </p>
+              </div>
+              <div class="product-image">
+                <img
+                  src="https://github.com/tayllors203-prog/image-produto3/blob/main/WhatsApp%20Image%202026-04-23%20at%2015.55.44.jpeg?raw=true"
+                  alt="Conjunto de Short e Cropped"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Conjunto de Short e Cropped</h3>
+                  <span class="product-price">R$25,00</span>
+                </div>
+                <p>Disponível em dois formato de impressão A4 e pôster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/K101384345X"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">2026 Moldes Rosanets. Todos os direitos reservados.</div>
+    </footer>
+
+    <div
+      id="detalhes-modal"
+      class="detalhes-modal"
+      aria-hidden="true"
+    >
+      <div class="detalhes-modal-backdrop" aria-hidden="true"></div>
+      <div
+        class="detalhes-modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="detalhes-modal-title"
+      >
+        <div class="detalhes-modal-head">
+          <h3 id="detalhes-modal-title">Detalhes</h3>
+          <button
+            type="button"
+            class="detalhes-modal-close"
+            aria-label="Fechar detalhes"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="detalhes-modal-body"></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var modal = document.getElementById("detalhes-modal");
+        if (!modal) return;
+        var titleEl = document.getElementById("detalhes-modal-title");
+        var bodyEl = modal.querySelector(".detalhes-modal-body");
+        var closeBtn = modal.querySelector(".detalhes-modal-close");
+        var backdrop = modal.querySelector(".detalhes-modal-backdrop");
+
+        function openFromCard(card) {
+          var title = card.querySelector(".product-title");
+          var source = card.querySelector(".product-detalhes-source");
+          titleEl.textContent = title ? title.textContent.trim() : "Detalhes";
+          if (source && source.innerHTML.trim()) {
+            bodyEl.innerHTML = source.innerHTML;
+          } else {
+            var p = card.querySelector(".product-body > p");
+            bodyEl.innerHTML =
+              "<p>" +
+              (p ? p.textContent.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "Sem descrição.") +
+              "</p>";
+          }
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+        }
+
+        document.addEventListener("click", function (e) {
+          var btn = e.target.closest(".js-open-detalhes");
+          if (!btn) return;
+          var card = btn.closest(".product-card");
+          if (card) openFromCard(card);
+        });
+
+        closeBtn.addEventListener("click", closeModal);
+        backdrop.addEventListener("click", closeModal);
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+        });
+      })();
+
+      (function () {
+        var grid = document.getElementById("catalog-products");
+        var input = document.getElementById("catalog-search-input");
+        var meta = document.getElementById("catalog-search-meta");
+        var emptyMsg = document.getElementById("catalog-search-empty");
+        if (!grid || !input || !meta || !emptyMsg) return;
+
+        var cards = Array.prototype.slice.call(grid.querySelectorAll(".product-card"));
+        var total = cards.length;
+
+        function normalize(str) {
+          if (!str) return "";
+          return str
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9\s]/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+        }
+
+        function levenshtein(a, b) {
+          if (a.length < b.length) return levenshtein(b, a);
+          if (!b.length) return a.length;
+          var i;
+          var j;
+          var prev;
+          var tmp;
+          var row = [];
+          for (j = 0; j <= b.length; j++) row[j] = j;
+          for (i = 1; i <= a.length; i++) {
+            prev = row[0];
+            row[0] = i;
+            for (j = 1; j <= b.length; j++) {
+              tmp = row[j];
+              row[j] =
+                a.charAt(i - 1) === b.charAt(j - 1)
+                  ? prev
+                  : 1 + Math.min(prev, row[j], row[j - 1]);
+              prev = tmp;
+            }
+          }
+          return row[b.length];
+        }
+
+        function cardHaystack(card) {
+          var parts = [];
+          var title = card.querySelector(".product-title");
+          var desc = card.querySelector(".product-body > p");
+          var img = card.querySelector(".product-image img");
+          var det = card.querySelector(".product-detalhes-source");
+          if (title) parts.push(title.textContent);
+          if (desc) parts.push(desc.textContent);
+          if (img) parts.push(img.getAttribute("alt") || "");
+          if (det) parts.push(det.textContent);
+          return normalize(parts.join(" "));
+        }
+
+        function wordMatchesQueryWord(qw, hay, hayWords) {
+          if (hay.indexOf(qw) !== -1) return true;
+          var w;
+          var maxD;
+          var minTok = 3;
+          for (w = 0; w < hayWords.length; w++) {
+            var hw = hayWords[w];
+            if (!hw.length) continue;
+            if (hw.length >= minTok && hw.indexOf(qw) === 0) return true;
+            if (qw.length >= minTok && hw.length >= minTok && qw.indexOf(hw) === 0) return true;
+            if (
+              hw.length >= minTok &&
+              qw.length >= minTok &&
+              (hw.indexOf(qw) !== -1 || qw.indexOf(hw) !== -1)
+            )
+              return true;
+            if (hw.length < minTok || qw.length < minTok) continue;
+            maxD = qw.length <= 4 ? 1 : qw.length <= 8 ? 2 : 3;
+            if (levenshtein(qw, hw) <= maxD) return true;
+          }
+          return false;
+        }
+
+        function cardMatches(card, rawQuery) {
+          var nq = normalize(rawQuery);
+          if (!nq) return true;
+
+          var hay = cardHaystack(card);
+          if (hay.indexOf(nq) !== -1) return true;
+
+          var titleEl = card.querySelector(".product-title");
+          var titleNorm = titleEl ? normalize(titleEl.textContent) : "";
+          if (titleNorm.length >= 4 && nq.length >= 4) {
+            var wholeDist = levenshtein(nq, titleNorm);
+            var wholeMax = Math.max(1, Math.floor(Math.max(nq.length, titleNorm.length) * 0.28));
+            if (wholeDist <= wholeMax) return true;
+          }
+
+          var qWords = nq.split(" ").filter(function (w) {
+            return w.length >= 2;
+          });
+          if (!qWords.length) return true;
+
+          var hayWords = hay.split(" ").filter(function (w) {
+            return w.length > 0;
+          });
+          var i;
+          for (i = 0; i < qWords.length; i++) {
+            if (!wordMatchesQueryWord(qWords[i], hay, hayWords)) return false;
+          }
+          return true;
+        }
+
+        function applyFilter() {
+          var q = input.value;
+          var visible = 0;
+          var i;
+          for (i = 0; i < cards.length; i++) {
+            var ok = cardMatches(cards[i], q);
+            if (ok) {
+              cards[i].classList.remove("is-hidden-search");
+              visible++;
+            } else {
+              cards[i].classList.add("is-hidden-search");
+            }
+          }
+
+          if (normalize(q) && visible === 0) {
+            emptyMsg.classList.add("is-visible");
+          } else {
+            emptyMsg.classList.remove("is-visible");
+          }
+
+          if (!normalize(q)) {
+            meta.textContent = total + (total === 1 ? " produto no catálogo." : " produtos no catálogo.");
+          } else {
+            meta.textContent =
+              visible === 0
+                ? "Nenhum resultado."
+                : visible +
+                  (visible === 1 ? " produto encontrado" : " produtos encontrados") +
+                  " (de " +
+                  total +
+                  ").";
+          }
+        }
+
+        input.addEventListener("input", applyFilter);
+        input.addEventListener("search", applyFilter);
+        applyFilter();
+      })();
+    </script>
+    <script src="/assist-molde.js" defer></script>
+  </body>
+</html>

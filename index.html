@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Rosane | Sua Loja Online</title>
+    <meta
+      name="description"
+      content="Loja online profissional para vender seus produtos com estilo, confianca e conversao."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f3f6fc;
+        --surface: #ffffff;
+        --surface-soft: #f7f9ff;
+        --text: #141824;
+        --text-soft: #5d667a;
+        --primary: #3d5cff;
+        --primary-dark: #2f46ca;
+        --accent: #15c39a;
+        --border: #e3e8f3;
+        --shadow: 0 20px 40px rgba(13, 24, 52, 0.08);
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: radial-gradient(circle at top right, #dfe8ff 0%, #f4f7fd 35%, #eef2fb 100%);
+        color: var(--text);
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+
+      body.nav-open {
+        overflow: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: min(1120px, 100% - clamp(20px, 5vw, 48px));
+        margin: 0 auto;
+      }
+
+      .header {
+        --site-header-h: 76px;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        background: rgba(243, 246, 252, 0.85);
+        border-bottom: 1px solid rgba(227, 232, 243, 0.9);
+        padding-left: env(safe-area-inset-left, 0);
+        padding-right: env(safe-area-inset-right, 0);
+      }
+
+      .header-inner {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .header-cta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .cart-label-short {
+        display: none;
+      }
+
+      @media (max-width: 420px) {
+        .cart-label-full {
+          display: none;
+        }
+
+        .cart-label-short {
+          display: inline;
+        }
+
+        .header-cta .btn-primary {
+          padding: 10px 14px;
+          font-size: 0.88rem;
+        }
+      }
+
+      .nav-menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--surface);
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .nav-menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 1px;
+        transition: transform 0.2s, opacity 0.2s;
+      }
+
+      .nav-menu-toggle.is-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .nav-menu-toggle.is-open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-menu-toggle.is-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .nav-backdrop {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: calc(var(--site-header-h) + env(safe-area-inset-top, 0px));
+        background: rgba(20, 24, 36, 0.35);
+        z-index: 48;
+      }
+
+      .nav-backdrop.is-visible {
+        display: block;
+      }
+
+      .brand {
+        font-size: 1.2rem;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+      }
+
+      .brand span {
+        color: var(--primary);
+      }
+
+      .nav {
+        display: flex;
+        gap: 24px;
+        color: var(--text-soft);
+        font-weight: 500;
+      }
+
+      .nav a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .nav a:hover {
+        color: var(--text);
+      }
+
+      @media (min-width: 901px) {
+        .header-inner .nav {
+          flex: 1;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .nav-menu-toggle {
+          display: inline-flex;
+        }
+
+        .header-inner .nav {
+          position: fixed;
+          left: 0;
+          right: 0;
+          top: 0;
+          padding: calc(var(--site-header-h) + env(safe-area-inset-top, 0px)) 20px 24px;
+          padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+          margin: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          background: rgba(247, 249, 255, 0.98);
+          backdrop-filter: blur(12px);
+          border-bottom: 1px solid var(--border);
+          box-shadow: 0 16px 40px rgba(13, 24, 52, 0.12);
+          z-index: 49;
+          max-height: min(100vh, 100dvh);
+          overflow-y: auto;
+          display: none;
+        }
+
+        .header-inner .nav.is-open {
+          display: flex;
+        }
+
+        .header-inner .nav a {
+          padding: 16px 4px;
+          font-size: 1.05rem;
+          border-bottom: 1px solid rgba(227, 232, 243, 0.9);
+          color: var(--text);
+        }
+
+        .header-inner .nav a:last-child {
+          border-bottom: none;
+        }
+      }
+
+      .btn {
+        border: none;
+        cursor: pointer;
+        border-radius: 999px;
+        font-weight: 600;
+        transition: 0.25s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+        padding: 12px 20px;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+      }
+
+      .btn-ghost {
+        border: 1px solid var(--border);
+        background: #fff;
+        padding: 11px 18px;
+        color: var(--text);
+      }
+
+      .btn-ghost:hover {
+        border-color: #ccd5ea;
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        padding: 72px 0 48px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 36px;
+        align-items: center;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #fff;
+        font-size: 0.84rem;
+        color: var(--text-soft);
+        margin-bottom: 18px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 4.2vw, 3.5rem);
+        line-height: 1.08;
+        margin-bottom: 14px;
+      }
+
+      .hero p {
+        color: var(--text-soft);
+        margin-bottom: 28px;
+        max-width: 54ch;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-visual {
+        background: linear-gradient(180deg, #f7f9ff 0%, #eef3ff 100%);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-visual img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+
+      .stats {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 12px;
+      }
+
+      .stat h3 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+
+      .stat p {
+        font-size: 0.86rem;
+        color: var(--text-soft);
+      }
+
+      section {
+        padding: 28px 0;
+      }
+
+      .section-top {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .section-top .btn-ghost {
+        flex-shrink: 0;
+      }
+
+      .section-top h2 {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+      }
+
+      .section-top p {
+        color: var(--text-soft);
+        max-width: 54ch;
+      }
+
+      .categories {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+
+      .category {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .category h3 {
+        margin-bottom: 5px;
+        font-size: 1rem;
+      }
+
+      .category p {
+        color: var(--text-soft);
+        font-size: 0.9rem;
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .product-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 14px 28px rgba(20, 24, 36, 0.06);
+        transition: 0.25s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 32px rgba(20, 24, 36, 0.1);
+      }
+
+      .product-image {
+        aspect-ratio: 4 / 3;
+        background: #fff;
+        overflow: hidden;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .product-body {
+        padding: 16px;
+      }
+
+      .product-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .product-title {
+        font-weight: 700;
+      }
+
+      .product-price {
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .product-body p {
+        color: var(--text-soft);
+        margin-bottom: 14px;
+        font-size: 0.93rem;
+      }
+
+      .product-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .product-actions .btn {
+        flex: 1;
+      }
+
+      .benefits {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .benefit {
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--surface);
+      }
+
+      .benefit h3 {
+        margin-bottom: 7px;
+      }
+
+      .benefit p {
+        color: var(--text-soft);
+        font-size: 0.92rem;
+      }
+
+      .newsletter {
+        margin-top: 26px;
+        background: var(--surface);
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .newsletter h3 {
+        margin-bottom: 6px;
+      }
+
+      .newsletter p {
+        color: var(--text-soft);
+      }
+
+      .newsletter form {
+        display: flex;
+        gap: 10px;
+      }
+
+      .newsletter input {
+        flex: 1;
+        border-radius: 12px;
+        border: 1px solid #d9e1f3;
+        padding: 12px 14px;
+        font: inherit;
+      }
+
+      .newsletter input:focus {
+        outline: 2px solid #d2dbff;
+      }
+
+      .footer {
+        margin-top: 36px;
+        padding: 24px 0 30px;
+        border-top: 1px solid rgba(196, 208, 233, 0.9);
+        color: #647089;
+        font-size: 0.9rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .product-detalhes-source {
+        display: none;
+      }
+
+      .detalhes-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .detalhes-modal.is-open {
+        display: flex;
+      }
+
+      .detalhes-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(20, 24, 36, 0.45);
+      }
+
+      .detalhes-modal-box {
+        position: relative;
+        width: min(360px, 100%);
+        max-height: min(420px, 85vh);
+        background: var(--surface);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .detalhes-modal-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .detalhes-modal-head h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .detalhes-modal-close {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border: none;
+        border-radius: 10px;
+        background: var(--surface-soft);
+        color: var(--text);
+        font-size: 1.35rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+      }
+
+      .detalhes-modal-close:hover {
+        background: #e8edfb;
+      }
+
+      .detalhes-modal-body {
+        padding: 14px 16px 16px;
+        overflow-y: auto;
+        color: var(--text-soft);
+        font-size: 0.93rem;
+        line-height: 1.55;
+      }
+
+      .detalhes-modal-body p + p {
+        margin-top: 10px;
+      }
+
+      @media (max-width: 1020px) {
+        .hero-grid,
+        .newsletter {
+          grid-template-columns: 1fr;
+        }
+
+        .categories {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .products {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .benefits {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .header {
+          --site-header-h: 64px;
+        }
+
+        .header-inner {
+          flex-wrap: nowrap;
+          padding: 10px 0;
+          min-height: 64px;
+        }
+
+        .hero {
+          padding-top: 34px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .hero-actions .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-visual img {
+          height: min(300px, 52vw);
+          max-height: 360px;
+        }
+
+        .stats {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 8px;
+        }
+
+        .stat {
+          padding: 10px 8px;
+        }
+
+        .stat h3 {
+          font-size: 0.92rem;
+        }
+
+        .stat p {
+          font-size: 0.75rem;
+          line-height: 1.35;
+        }
+
+        .categories,
+        .products,
+        .benefits {
+          grid-template-columns: 1fr;
+        }
+
+        .section-top {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .section-top .btn-ghost {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .newsletter form {
+          flex-direction: column;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+
+        .product-actions {
+          flex-direction: column;
+        }
+
+        .product-actions .btn {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .detalhes-modal {
+          align-items: flex-end;
+          padding: 0;
+          padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+
+        .detalhes-modal-box {
+          width: 100%;
+          max-width: 100%;
+          border-radius: 18px 18px 0 0;
+          max-height: min(88vh, calc(100dvh - 24px));
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/assist-molde.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="#" class="brand">Moldes<span>Rosanets</span></a>
+        <nav id="main-nav" class="nav" aria-label="Principal">
+          <a href="#produtos">Produtos</a>
+          <a href="#categorias">Categorias</a>
+          <a href="#vantagens">Vantagens</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <div class="header-cta">
+          <button type="button" class="btn btn-primary">
+            <span class="cart-label-full">Ver Carrinho</span>
+            <span class="cart-label-short">Carrinho</span>
+          </button>
+          <button
+            type="button"
+            class="nav-menu-toggle"
+            id="nav-menu-toggle"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="main-nav"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+      <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="badge">Moldes de roupas prontos para você criar e vender.</div>
+            <h1>Facilite sua costura com moldes profissionais.</h1>
+            <p>
+              Encontre moldes de roupas prontos para usar, com qualidade profissional e acesso imediato pela Hotmart.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary">Comecar Agora</button>
+              <a class="btn btn-ghost" href="catalogo.html">Ver Catalogo</a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <img
+              src="https://github.com/tayllors203-prog/imagecapa/blob/main/WhatsApp%20Image%202026-04-23%20at%2011.13.06.jpeg?raw=true"
+              alt="Produto destaque da loja"
+            />
+            <div class="stats">
+              <article class="stat">
+                <h3>+320</h3>
+                <p>Pedidos no mes</p>
+              </article>
+              <article class="stat">
+                <h3>98%</h3>
+                <p>Avaliacao positiva</p>
+              </article>
+              <article class="stat">
+                <h3>24h</h3>
+                <p>Suporte ao cliente</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="categorias">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <h2>Escolha o molde ideal para sua criação</h2>
+              <p>Explore nossas categorias de moldes e encontre o modelo perfeito para cada estilo de roupa.</p>
+            </div>
+          </div>
+          <div class="categories">
+            <article class="category">
+              <h3>Moda Feminina</h3>
+              <p>Moldes de vestidos, blusas, saias e peças femininas variadas.</p>
+            </article>
+            <article class="category">
+              <h3>Moda Masculina</h3>
+              <p>Moldes de camisas, calças, bermudas e roupas masculinas.</p>
+            </article>
+            <article class="category">
+              <h3>Moda Infantil</h3>
+              <p>Moldes para roupas de crianças e bebês, confortáveis e estilosas.</p>
+            </article>
+            <article class="category">
+              <h3>Moda Plus Size</h3>
+              <p>Moldes pensados para valorizar diferentes corpos com caimento perfeito.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="produtos">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <h2>Moldes em destaque</h2>
+              <p>
+                Confira nossos moldes mais procurados e comece a criar peças incríveis.
+              </p>
+            </div>
+            <a class="btn btn-ghost" href="catalogo.html">Ver todos</a>
+          </div>
+
+          <div class="products">
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  <strong>1. Versatilidade de tamanhos:</strong> O Corset está disponível nos tamanhos 36 ao
+                  46, o que permite atender a uma ampla gama de clientes com diferentes medidas corporais. Isso
+                  garante que todas as mulheres possam encontrar um corset que se ajuste perfeitamente ao seu
+                  corpo, proporcionando conforto e estilo.
+                </p>
+                <p>
+                  <strong>2. Personalização de tecidos:</strong> O Corset foi testado em tecido plano, mas
+                  também pode ser adaptado para tecidos com elasticidade. Isso significa que as clientes têm
+                  a liberdade de escolher o tipo de tecido que desejam usar em seu corset, permitindo que elas
+                  personalizem o produto de acordo com suas preferências e necessidades. Além disso, a
+                  possibilidade de adaptar as medidas também oferece a oportunidade de criar um corset sob
+                  medida para cada cliente, garantindo um ajuste perfeito e um resultado final único.
+                </p>
+              </div>
+              <div class="product-image">
+                <!-- Troque esta imagem pela foto do seu produto -->
+                <img
+                  src="https://github.com/tayllors203-prog/imageproduto1/blob/main/WhatsApp%20Image%202026-04-23%20at%2011.23.51.jpeg?raw=true"
+                  alt="Corset"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Corset</h3>
+                  <span class="product-price">R$ 25,00</span>
+                </div>
+                <p>Disponível pra imprimir em A4 e pôster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/W74206596I"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  <strong>Modelagem digital desenvolvida para costureiras que deseja facilitar o trabalho na hora da confecção simples e prática disponível no tamanho real pra imprimir em plotter se desejar imprimir em casa basta mudar a configuração da impressora pra formatoA4 disponível nos tamanhos 36 ao 54 sugestão de tecido plano ou malha Modelagem testada e aprovada...
+                </p>
+              </div>
+              <div class="product-image">
+                <!-- Troque esta imagem pela foto do seu produto -->
+                <img
+                  src="https://github.com/tayllors203-prog/imageproduto1/blob/main/WhatsApp%20Image%202026-04-23%20at%2011.41.26.jpeg?raw=true"
+                  alt="Calça Pantalona"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Calça Pantalona</h3>
+                  <span class="product-price">R$ 15,00</span>
+                </div>
+                <p>Disponível nos dois formatos de impressão A4 e pôster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/Q74215274P"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-detalhes-source">
+                <p>
+                  Modelagem desenvolvida por uma moldista através de uma foto inspiração nos tamanhos PMGGG
+                  agrupados com sugestões de malha dentro do molde disponível em dois formatos de impressão A4 e
+                  plotter para vc escolher qual melhor opção.
+                </p>
+              </div>
+              <div class="product-image">
+                <!-- Troque esta imagem pela foto do seu produto -->
+                <img
+                  src="https://raw.githubusercontent.com/tayllors203-prog/image-produto3/575728b3e0b2ad7ffbe68e88d2960719434ffd58/WhatsApp%20Image%202026-04-23%20at%2015.41.32.jpeg"
+                  alt="Blusa Costa Nua"
+                />
+              </div>
+              <div class="product-body">
+                <div class="product-top">
+                  <h3 class="product-title">Blusa Costa Nua</h3>
+                  <span class="product-price">R$ 20,00</span>
+                </div>
+                <p>Disponível em dois formato de impressão A4 e pôster.</p>
+                <div class="product-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="https://go.hotmart.com/S94411643D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Comprar</a
+                  >
+                  <button type="button" class="btn btn-ghost js-open-detalhes">Detalhes</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="vantagens">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <h2>Vantagens de comprar aqui</h2>
+              <p>
+                 Aqui você encontra praticidade, segurança e suporte para transformar suas ideias em peças reais.
+              </p>
+            </div>
+          </div>
+          <div class="benefits">
+            <article class="benefit">
+              <h3>Acesso Imediato</h3>
+              <p>Receba seus moldes digitais pela Hotmart logo após a compra.</p>
+            </article>
+            <article class="benefit">
+              <h3>Pagamento Seguro</h3>
+              <p>Aceite cartao, pix e boleto com total protecao.</p>
+            </article>
+            <article class="benefit">
+              <h3>Suporte Dedicado</h3>
+              <p>Atendimento rápido para tirar dúvidas e ajudar na sua criação.</p>
+            </article>
+          </div>
+
+          <div class="newsletter" id="contato">
+            <div>
+              <h3>Receba novidades e promocoes</h3>
+              <p>Capture emails para montar sua base e gerar vendas recorrentes.</p>
+            </div>
+            <form>
+              <input type="email" placeholder="Digite seu melhor e-mail" required />
+              <button type="submit" class="btn btn-primary">Quero receber</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>2026 MoldesRosanets. Todos os direitos reservados.</p>
+        <p>Instagram | WhatsApp | Politica de Privacidade</p>
+      </div>
+    </footer>
+
+    <div
+      id="detalhes-modal"
+      class="detalhes-modal"
+      aria-hidden="true"
+    >
+      <div class="detalhes-modal-backdrop" aria-hidden="true"></div>
+      <div
+        class="detalhes-modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="detalhes-modal-title"
+      >
+        <div class="detalhes-modal-head">
+          <h3 id="detalhes-modal-title">Detalhes</h3>
+          <button
+            type="button"
+            class="detalhes-modal-close"
+            aria-label="Fechar detalhes"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="detalhes-modal-body"></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var nav = document.getElementById("main-nav");
+        var toggle = document.getElementById("nav-menu-toggle");
+        var navBackdrop = document.getElementById("nav-backdrop");
+        if (!nav || !toggle || !navBackdrop) return;
+
+        function setNavOpen(open) {
+          nav.classList.toggle("is-open", open);
+          navBackdrop.classList.toggle("is-visible", open);
+          toggle.classList.toggle("is-open", open);
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+          navBackdrop.setAttribute("aria-hidden", open ? "false" : "true");
+          document.body.classList.toggle("nav-open", open);
+        }
+
+        function closeNav() {
+          setNavOpen(false);
+        }
+
+        toggle.addEventListener("click", function () {
+          setNavOpen(!nav.classList.contains("is-open"));
+        });
+
+        navBackdrop.addEventListener("click", closeNav);
+
+        nav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", closeNav);
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && nav.classList.contains("is-open")) closeNav();
+        });
+
+        window.addEventListener(
+          "resize",
+          function () {
+            if (window.matchMedia("(min-width: 901px)").matches) closeNav();
+          },
+          { passive: true }
+        );
+      })();
+    </script>
+    <script>
+      (function () {
+        var modal = document.getElementById("detalhes-modal");
+        if (!modal) return;
+        var titleEl = document.getElementById("detalhes-modal-title");
+        var bodyEl = modal.querySelector(".detalhes-modal-body");
+        var closeBtn = modal.querySelector(".detalhes-modal-close");
+        var backdrop = modal.querySelector(".detalhes-modal-backdrop");
+
+        function openFromCard(card) {
+          var title = card.querySelector(".product-title");
+          var source = card.querySelector(".product-detalhes-source");
+          titleEl.textContent = title ? title.textContent.trim() : "Detalhes";
+          if (source && source.innerHTML.trim()) {
+            bodyEl.innerHTML = source.innerHTML;
+          } else {
+            var p = card.querySelector(".product-body > p");
+            bodyEl.innerHTML =
+              "<p>" +
+              (p ? p.textContent.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "Sem descrição.") +
+              "</p>";
+          }
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+        }
+
+        document.addEventListener("click", function (e) {
+          var btn = e.target.closest(".js-open-detalhes");
+          if (!btn) return;
+          var card = btn.closest(".product-card");
+          if (card) openFromCard(card);
+        });
+
+        closeBtn.addEventListener("click", closeModal);
+        backdrop.addEventListener("click", closeModal);
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+        });
+      })();
+    </script>
+    <script src="/assist-molde.js" defer></script>
+  </body>
+</html>

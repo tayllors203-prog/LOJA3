@@ -1,0 +1,12 @@
+{
+  "name": "loja-moldes",
+  "private": true,
+  "description": "Site estatico + servidor local para chat Mistral. Use: npm install && npm start e abra http://localhost:3333/index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
